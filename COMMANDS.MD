@@ -2,6 +2,18 @@
 
 . .venv/bin/activate
 
-# Run Flask app
+# Run Flask app locally
 
 flask run
+
+# Build docker image
+
+docker build --tag python-docker .
+
+# Run container
+
+docker run -d -p 5000:5000 blockchain-explorer
+
+# Sample eth address
+
+0xc94770007dda54cF92009BFF0dE90c06F603a09f
