@@ -12,7 +12,7 @@ INFURA_API_KEY = os.getenv('INFURA_API_KEY')
 
 app = Flask(__name__)
 CORS(app)
-w3 = Web3(Web3.EthereumTesterProvider())
+w3 = Web3(Web3.IPCProvider())
 
 def _convert_hex_to_decimal(hex:str):
     wei_as_number = int(hex, 16) # convert hexstring to integer
