@@ -38,3 +38,7 @@ def get_balance(address:str):
         app.logger.error(e)
         return "ERROR"
     
+
+@app.route("/")
+def hi():
+    return "Hello"

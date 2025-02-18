@@ -10,9 +10,13 @@ flask run
 
 docker build --tag python-docker .
 
-# Run container
+# Run flask container
 
 docker run -d -p 5000:5000 blockchain-explorer
+
+# Run react container
+
+docker run -p 80:80 ui
 
 # Sample eth address
 
