@@ -23,6 +23,7 @@ def get_balance(address:str):
     try:
         request_url = "https://mainnet.infura.io/v3/"+INFURA_API_KEY
         json_body = {"jsonrpc": "2.0", "id": 1, "method": "eth_getBalance", "params": [address, "latest"]}
+        # TODO some validation on the address before making the API call
         app.logger.info('INITIATED to get balance for ethereum address: %s', address)
         response = requests.post(
             url=request_url, 
@@ -36,3 +37,4 @@ def get_balance(address:str):
         app.logger.error('FAILURE retrieving balance for ethereum address: %s', address)
         app.logger.error(e)
         return "ERROR"
+    
