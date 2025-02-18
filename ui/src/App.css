@@ -1,0 +1,12 @@
+body {
+	font-family: Avenir;
+	height: 100vh;
+	overflow: hidden;
+	background-color: #38bdf8;
+}
+
+input {
+	font-family: Avenir;
+	padding: 0.5rem;
+	border-radius: 50px;
+}
