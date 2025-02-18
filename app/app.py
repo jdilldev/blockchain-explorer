@@ -24,18 +24,21 @@ def _convert_hex_to_decimal(hex:str):
 @app.route("/address/balance/<address>")
 def get_balance(address:str):
     try:
-        request_url = "https://mainnet.infura.io/v3/"+INFURA_API_KEY
-        json_body = {"jsonrpc": "2.0", "id": 1, "method": "eth_getBalance", "params": [address, "latest"]}
-        # TODO some validation on the address before making the API call
-        app.logger.info('INITIATED to get balance for ethereum address: %s', address)
-        response = requests.post(
-            url=request_url, 
-            json=json_body
-        )
-        if response.status_code == 200:
-            app.logger.info('SUCCESS retrieving balance for ethereum address: %s', address)
-            balance = _convert_hex_to_decimal(response.json()['result'])
-            return json.dumps({'balance': float(balance)}) # convert Decimal to float so it can be jsonified
+        if address is not None:
+            request_url = "https://mainnet.infura.io/v3/"+INFURA_API_KEY
+            json_body = {"jsonrpc": "2.0", "id": 1, "method": "eth_getBalance", "params": [address, "latest"]}
+            # TODO some validation on the address before making the API call
+            app.logger.info('INITIATED to get balance for ethereum address: %s', address)
+            response = requests.post(
+                url=request_url, 
+                json=json_body
+            )
+            if response.status_code == 200:
+                app.logger.info('SUCCESS retrieving balance for ethereum address: %s', address)
+                balance = _convert_hex_to_decimal(response.json()['result'])
+                return json.dumps({'balance': float(balance)}) # convert Decimal to float so it can be jsonified
+        else:
+            return "Invalid input"
     except Exception as e:
         app.logger.error('FAILURE retrieving balance for ethereum address: %s', address)
         app.logger.error(e)
