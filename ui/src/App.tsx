@@ -3,12 +3,17 @@ import './App.css'
 import axios from 'axios'
 
 const App = () => {
+
   const [blockchainAddress, setBlockchainAddress] = useState('')
   const [balance, setBalance] = useState<string | undefined>(undefined)
 
+  const url = '18.233.163.124'
+
+  console.log(url)
+
   useEffect(() => {
     const getBalance = async (address: string) => {
-      const res = await axios.get(`http://18.233.163.124:5000/address/balance/${address}`)
+      const res = await axios.get(`http://${url}:5000/address/balance/${address}`)
       setBalance(res['data']['balance'])
     }
     if (blockchainAddress)
