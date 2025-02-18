@@ -11,6 +11,9 @@ load_dotenv()
 INFURA_API_KEY = os.getenv('INFURA_API_KEY')
 
 app = Flask(__name__)
+if __name__ == "__main__":
+    app.run(host='0.0.0.0',port=5000,)
+
 CORS(app)
 w3 = Web3(Web3.IPCProvider())
 
